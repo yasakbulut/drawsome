@@ -6,7 +6,7 @@ import './PlayerPortrait.css'
 const PlayerPortrait = ({ lines, player, onClick }) => (
     <div className="player-portrait">
       <Drawing lines={lines}/>
-      <div className="metadata"><strong>{player.name}</strong></div>
+      <div className="metadata"><strong>{player.name.toLowerCase()}</strong></div>
     </div>
 );
 
