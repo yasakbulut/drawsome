@@ -1,0 +1,36 @@
+.artwork {
+    display: flex;
+}
+
+.artwork .drawing {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.artwork .drawing .metadata {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+.artwork .drawing .metadata strong {
+    display: block;
+}
+
+.artwork .lies {
+    display: flex;
+    align-items: stretch;
+}
+
+.artwork .lies ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.artwork .lies ul li{
+    margin: 0;
+    padding-left: 20px;
+}

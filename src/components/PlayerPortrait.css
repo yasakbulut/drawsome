@@ -1,0 +1,12 @@
+.player-portrait {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.player-portrait .metadata {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
