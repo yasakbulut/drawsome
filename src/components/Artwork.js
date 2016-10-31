@@ -12,7 +12,7 @@ const Artwork = ({ lines, title, player, lies, onClick }) => (
       <div className="lies">
         <ul>
           {
-              lies.map(lie => <li><strong>{lie.text.toLowerCase()}</strong> by <span>{lie.player.name.toLowerCase()}</span></li>)
+              lies.map(lie => <li key={lie.text}><strong>{lie.text.toLowerCase()}</strong> by <span>{lie.player.name.toLowerCase()}</span></li>)
           }
         </ul>
       </div>

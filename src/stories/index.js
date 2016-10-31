@@ -9,7 +9,7 @@ import PlayerPortrait from '../components/PlayerPortrait';
 import GameRound from '../components/GameRound';
 
 
-import data from '../data'
+import data from '../../public/data'
 
 storiesOf('Welcome', module)
     .add('to Storybook', () => (

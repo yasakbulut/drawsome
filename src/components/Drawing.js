@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Drawing = ({lines, onClick}) => (
+const Drawing = ({lines, onClick}) => {
+    let i = 0;
+    return (
     <svg version="1.1"
          baseProfile="full"
          width="250"
@@ -9,7 +11,7 @@ const Drawing = ({lines, onClick}) => (
     >
         {
             lines.map(line => line.points.map(
-                point => <circle cx={point.x} cy={point.y} r={line.thickness / 2} fill={line.color} />))
+                point => <circle cx={point.x} cy={point.y} r={line.thickness / 2} fill={line.color} key={'p' + i++}/>))
         }
         {
             lines.map(line => <polyline fill="none"
@@ -17,10 +19,11 @@ const Drawing = ({lines, onClick}) => (
                                         stroke={line.color}
                                         strokeLinejoin="round"
                                         strokeWidth={line.thickness}
-                                        points={line.points.reduce((acc, point) => {acc.push(point.x + ' ' + point.y);return acc}, []).join(", ")}/>)
+                                        points={line.points.reduce((acc, point) => {acc.push(point.x + ' ' + point.y);return acc}, []).join(", ")}
+                                        key={'pl' + i++}/>)
         }
     </svg>
-);
+)};
 
 Drawing.propTypes = {
     lines: React.PropTypes.array.isRequired,
