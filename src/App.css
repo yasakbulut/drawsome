@@ -3,7 +3,11 @@
 }
 
 .game-list li {
-    margin-bottom: 10px;
+    padding: 10px 5px;
+}
+
+.game-list li.active {
+    color: crimson;
 }
 
 .game-list li a {

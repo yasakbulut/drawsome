@@ -12,43 +12,48 @@ class App extends Component {
 
             },
             files: [],
-            gameFile: null
+            gameFile: null,
+            loading: false
         };
     }
 
     componentDidMount() {
+        this.setState({loading: true});
         fetch('http://drawsome.yasa.gs/index.json')
             .then(data => data.json())
-            .then(data => this.setState({files: data.files}))
+            .then(data => this.setState({files: data.files, loading: false}))
     }
 
     displayGameFile(gameFile) {
+        this.setState({loading: true});
         fetch(`http://drawsome.yasa.gs/games/${gameFile}`)
             .then(data => data.json())
             .then(data => {
-                this.setState({data, gameFile})
+                this.setState({data, gameFile, loading: false})
             })
     }
 
-    render() {
-        if (this.state.gameFile === null) {
-            return (
-                <div className="game-list">
-                    <h1>drawsome</h1>
-                    <ol>
-                        {this.state.files.map(file => <li key={file}><a onClick={event => this.displayGameFile(file)}>{file}</a></li>)}
-                    </ol>
-                </div>
-            );
-        }
+    displaySelectedGame(data){
         return (
             <div className="game-detail">
-                <div className="breadcrumbs">
-                    <a href="/">Home</a> > {this.state.gameFile}
-                </div>
-                <GameRound {...this.state.data}/>
+                <GameRound {...data}/>
             </div>
-        );
+        )
+    }
+
+    render() {
+            return (
+                <div className="app">
+                    <div className="game-list">
+                        <h1>drawsome</h1>
+                        <ol>
+                            {this.state.files.map(file => <li key={file} className={file === this.state.gameFile ? 'active': ''}><a onClick={event => this.displayGameFile(file)}>{file}</a></li>)}
+                        </ol>
+                    </div>
+                    <div>{this.state.loading ? 'Loading' : ''}</div>
+                    { this.displaySelectedGame(this.state.data) }
+                </div>
+            );
     }
 }
 
