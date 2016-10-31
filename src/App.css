@@ -1,0 +1,15 @@
+.game-list{
+    padding: 20px;
+}
+
+.game-list li {
+    margin-bottom: 10px;
+}
+
+.game-list li a {
+    cursor: pointer;
+}
+
+.game-detail .breadcrumbs {
+    padding: 20px;
+}
