@@ -17,13 +17,13 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('http://drawful.yasa.gs/index.json')
+        fetch('http://drawsome.yasa.gs/index.json')
             .then(data => data.json())
             .then(data => this.setState({files: data.files}))
     }
 
     displayGameFile(gameFile) {
-        fetch(`http://drawful.yasa.gs/games/${gameFile}`)
+        fetch(`http://drawsome.yasa.gs/games/${gameFile}`)
             .then(data => data.json())
             .then(data => {
                 this.setState({data, gameFile})
