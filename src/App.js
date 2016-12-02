@@ -1,35 +1,40 @@
 import React, {Component} from "react";
-import GameRound from "./components/GameRound.js";
+import GameRound from "./components/GameRound";
+import GameSearch from "./components/GameSearch";
 import './App.css'
 
+const baseUrl = '/api';
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {
-                drawings: [],
-                playerPortraits: []
+            games: [],
+            selectedGame: null,
+            game: {
+                metadata: {},
+                game: {
+                    drawings: [],
+                    playerPortraits: []
 
+                }
             },
-            files: [],
-            gameFile: null,
             loading: false
-        };
+        }
     }
 
     componentDidMount() {
         this.setState({loading: true});
-        fetch('http://drawsome.yasa.gs/index.json')
+        fetch(baseUrl + '/games')
             .then(data => data.json())
-            .then(data => this.setState({files: data.files, loading: false}))
+            .then(data => this.setState({games: data, loading: false}))
     }
 
-    displayGameFile(gameFile) {
+    displayGameFile(game) {
         this.setState({loading: true});
-        fetch(`http://drawsome.yasa.gs/games/${gameFile}`)
+        fetch(baseUrl + '/games/' + game.id)
             .then(data => data.json())
             .then(data => {
-                this.setState({data, gameFile, loading: false})
+                this.setState({game: data, selectedGame: game.id, loading: false})
             })
     }
 
@@ -45,13 +50,10 @@ class App extends Component {
             return (
                 <div className="app">
                     <div className="game-list">
-                        <h1>drawsome</h1>
-                        <ol>
-                            {this.state.files.map(file => <li key={file} className={file === this.state.gameFile ? 'active': ''}><a onClick={event => this.displayGameFile(file)}>{file}</a></li>)}
-                        </ol>
+                        <GameSearch games={this.state.games} handler={event => this.displayGameFile(event)}/>
                     </div>
                     <div>{this.state.loading ? 'Loading' : ''}</div>
-                    { this.displaySelectedGame(this.state.data) }
+                    { this.displaySelectedGame(this.state.game.game) }
                 </div>
             );
     }

@@ -2,18 +2,6 @@
     padding: 20px;
 }
 
-.game-list li {
-    padding: 10px 5px;
-}
-
-.game-list li.active {
-    color: crimson;
-}
-
-.game-list li a {
-    cursor: pointer;
-}
-
 .game-detail .breadcrumbs {
     padding: 20px;
 }

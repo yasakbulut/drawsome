@@ -1,6 +1,6 @@
 import React from 'react';
-import Artwork from './Artwork'
-import PlayerPortrait from './PlayerPortrait'
+import Artwork from './Artwork';
+import PlayerPortrait from './PlayerPortrait';
 
 import './GameRound.css'
 

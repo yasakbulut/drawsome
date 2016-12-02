@@ -7,9 +7,12 @@ import Drawing from '../components/Drawing';
 import Artwork from '../components/Artwork';
 import PlayerPortrait from '../components/PlayerPortrait';
 import GameRound from '../components/GameRound';
+import GameSearch from '../components/GameSearch';
 
 
 import data from '../../public/data'
+import game from '../../public/game'
+import games from '../../public/games'
 
 storiesOf('Welcome', module)
     .add('to Storybook', () => (
@@ -43,4 +46,9 @@ storiesOf('PlayerPortrait', module)
 storiesOf('GameRound', module)
     .add('game round', () => (
         <GameRound drawings={data.drawings} playerPortraits={data.playerPortraits} />
+    ));
+
+storiesOf('GameSearch', module)
+    .add('game search', () => (
+        <GameSearch games={games} />
     ));
