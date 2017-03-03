@@ -1,9 +1,25 @@
 import React, {Component} from "react";
-import GameRound from "./components/GameRound";
-import GameSearch from "./components/GameSearch";
+import {
+    BrowserRouter as Router,
+    Route
+} from 'react-router-dom'
+
+import GameRoundLoader from "./components/GameRoundLoader";
+import SearchResults from "./components/SearchResults";
+import SearchBar from "./components/SearchBar";
 import './App.css'
 
+
 const baseUrl = '/api';
+
+const GameRoundPage = ({match}) => (
+    <GameRoundLoader apiUrl={baseUrl + '/games/'} gameId={match.params.id}/>
+);
+const SearchRoute = ({component: Component, games, ...rest}) => (
+    <Route {...rest} render={props => (
+        <Component games={games} query={props.match.params.query}/>
+    )}/>
+);
 class App extends Component {
     constructor(props) {
         super(props);
@@ -29,34 +45,21 @@ class App extends Component {
             .then(data => this.setState({games: data, loading: false}))
     }
 
-    displayGameFile(game) {
-        this.setState({loading: true});
-        fetch(baseUrl + '/games/' + game.id)
-            .then(data => data.json())
-            .then(data => {
-                this.setState({game: data, selectedGame: game.id, loading: false})
-            })
-    }
-
-    displaySelectedGame(data){
-        return (
-            <div className="game-detail">
-                <GameRound {...data}/>
-            </div>
-        )
-    }
-
     render() {
             return (
-                <div className="app">
-                    <div className="game-list">
-                        <GameSearch games={this.state.games} handler={event => this.displayGameFile(event)}/>
+                <Router>
+                    <div className="app">
+                        <header>
+                            <h1>drawsome</h1>
+                            <SearchBar/>
+                        </header>
+                        <Route path="/game/:id" component={GameRoundPage}/>
+                        <SearchRoute path="/search/:query" games={this.state.games} component={SearchResults}/>
                     </div>
-                    <div>{this.state.loading ? 'Loading' : ''}</div>
-                    { this.displaySelectedGame(this.state.game.game) }
-                </div>
+                </Router>
             );
     }
 }
+
 
 export default App;

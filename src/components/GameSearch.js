@@ -1,15 +1,19 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import Autosuggest from 'react-autosuggest';
 
 import './GameSearch.css'
 
-const getSuggestionValue = s => "Game from " + (new Date(s.date)).toLocaleDateString();
+const getSuggestionValue = s => "";
 
 const renderSuggestion = (handler) => (s) => (
-    <div className="suggestion" onClick={e => handler(s)}>
-        <div className="suggestion-header">Game from {(new Date(s.date)).toLocaleDateString()}</div>
-        <div className="suggestion-players">{s.players.join(', ')}</div>
-    </div>
+    <Link to={'/game/' + s.id}>
+        <div className="suggestion" onClick={e => handler(s)}>
+            {/*<div className="suggestion" onClick={e => handler(s)}>*/}
+            <div className="suggestion-header">Game from {(new Date(s.date)).toLocaleDateString()}</div>
+            <div className="suggestion-players">{s.players.join(', ')}</div>
+        </div>
+    </Link>
 );
 
 class GameSearch extends React.Component {

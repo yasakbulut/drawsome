@@ -3,17 +3,17 @@
     flex-direction: column;
 }
 
-.players {
+.game-round .players {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.players .player-portrait {
+.game-round .players .player-portrait {
     margin-bottom: 30px;
 }
 
-.drawings {
+.game-round .drawings {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

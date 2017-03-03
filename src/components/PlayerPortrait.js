@@ -6,7 +6,7 @@ import './PlayerPortrait.css'
 
 const PlayerPortrait = ({ lines, player, onClick }) => (
     <div className="player-portrait">
-      <Drawing lines={lines}/>
+      <Drawing lines={lines} scaleFactor="0.5"/>
       <div className="metadata" style={{backgroundColor: ColorTools.getColorsFromLines(lines)[0], color: ColorTools.getTextColorForBackground((ColorTools.getColorsFromLines(lines)[0]).substr(1))}}><strong>{player.name.toLowerCase()}</strong></div>
     </div>
 );
