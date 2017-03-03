@@ -15,8 +15,7 @@ class SearchBar extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        // console.log(this.context);
-        this.context.router.push('/search/' + this.state.query);
+        this.context.history.push('/search/' + this.state.query);
     }
 
     onClear() {
@@ -40,7 +39,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.contextTypes = {
-    router: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired
 };
 
 export default SearchBar;
